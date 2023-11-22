@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 //Pages
 import { HomePage } from "./pages/HomePage";
+import ProductDetails from "./pages/ProductDetails";
 
 export type ProductsData = {
   id: number;
@@ -24,6 +25,7 @@ function App() {
   //States
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductsData[]>([]);
+  const [favoriteItems, setFavoriteItems] = useState<ProductsData[]>([]);
 
   //Fetch data:
   useEffect(() => {
@@ -42,9 +44,19 @@ function App() {
   if (isLoading) return "Loading...";
   return (
     <>
-      <Navbar />
+      <Navbar favorite={favoriteItems} />
       <Routes>
-        <Route path="/" element={<HomePage products={products} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              products={products}
+              favorite={favoriteItems}
+              setFavorite={setFavoriteItems}
+            />
+          }
+        />
+        <Route path="/product/:productId" element={<ProductDetails />} />
       </Routes>
     </>
   );
