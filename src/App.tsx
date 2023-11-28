@@ -56,7 +56,15 @@ function App() {
             />
           }
         />
-        <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route
+          path="/product/:productId"
+          element={
+            <ProductDetails
+              favorite={favoriteItems}
+              setFavorite={setFavoriteItems}
+            />
+          }
+        />
       </Routes>
     </>
   );

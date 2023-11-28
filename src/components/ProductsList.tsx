@@ -3,8 +3,12 @@ import { type ProductsData as Stock } from "../App";
 import { Link } from "react-router-dom";
 type ProductsListProps = {
   products: Stock[];
+  handleAddFav: (item: object) => void;
 };
-export default function ProductsList({ products }: ProductsListProps) {
+export default function ProductsList({
+  products,
+  handleAddFav,
+}: ProductsListProps) {
   return (
     <div>
       {products.map((item) => (
@@ -14,7 +18,7 @@ export default function ProductsList({ products }: ProductsListProps) {
             <img src={item.image} alt={item.title} />
           </Link>
           <p>{item.price} €</p>
-          <button>🖤</button>
+          <button onClick={() => handleAddFav(item)}>🖤</button>
           <button>Add to cart</button>
         </div>
       ))}
