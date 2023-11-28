@@ -1,10 +1,14 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { type ProductsData as Stock } from "../App.tsx";
+
+import { Product } from "../types/types.ts";
+
 import ProductsList from "../components/ProductsList.tsx";
+
+//Type inside the components for props
 type HomePageProps = {
-  products: Stock[];
-  favorite: Stock[];
-  setFavorite: Dispatch<SetStateAction<Stock[]>>;
+  products: Product[];
+  favorite: Product[];
+  setFavorite: Dispatch<SetStateAction<Product[]>>;
 };
 export const HomePage = ({
   products,
@@ -12,10 +16,10 @@ export const HomePage = ({
   setFavorite,
 }: HomePageProps) => {
   //Favorite Button
-  const handleAddFav = (item) => {
-    if (favorite.length === 0) {
-      setFavorite(item);
-    }
+  const handleAddFav = (item: Product) => {
+    // if (favorite.length === 0) {
+    //   setFavorite(item);
+    // }
     if (!favorite.find((favItem) => favItem.id === item.id)) {
       setFavorite([...favorite, item]);
     }

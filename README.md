@@ -4,7 +4,15 @@
 - DONE:Add Navbar
 - Add Cart + functionality
 - Add Search bar + functionality
--
+
+# Homework
+
+Change color of fav btn when click and show the message.
+Same thing with the cart.
+Every time a product is added to fav or the cart.
+When using the cart re-use the ProductOrder Type.
+
+https://mui.com/material-ui/react-snackbar/
 
 # React + TypeScript + Vite
 

@@ -10,22 +10,16 @@ import { Navbar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 
-export type ProductsData = {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-  rating: { rate: number; count: number };
-};
-
+//Move to type folder
+//type naming convention ProductsData -> ProductData
+import { Product } from "./types/types";
 function App() {
   const API_URL: string = "https://fakestoreapi.com/products";
   //States
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<ProductsData[]>([]);
-  const [favoriteItems, setFavoriteItems] = useState<ProductsData[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true); //type optional
+  const [products, setProducts] = useState<Product[]>([]);
+  //Don't change name
+  const [favoriteItems, setFavoriteItems] = useState<Product[]>([]);
 
   //Fetch data:
   useEffect(() => {
@@ -40,6 +34,8 @@ function App() {
         setIsLoading(false);
       });
   }, []);
+
+  //Separate loading in a component
 
   if (isLoading) return "Loading...";
   return (

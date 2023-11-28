@@ -1,9 +1,13 @@
 import React from "react";
-import { type ProductsData as Stock } from "../App";
+//import { type ProductsData as Stock } from "../App";
+import { Product } from "../types/types";
 import { Link } from "react-router-dom";
+
 type ProductsListProps = {
-  products: Stock[];
-  handleAddFav: (item: object) => void;
+  products: Product[];
+  favorite: Product[];
+  setFavorite: React.Dispatch<React.SetStateAction<Product[]>>;
+  handleAddFav: (item: Product) => void;
 };
 export default function ProductsList({
   products,
