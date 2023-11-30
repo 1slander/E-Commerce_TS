@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 //import { type ProductsData as Stock } from "../App";
 import { Product } from "../types/types";
 import { Link } from "react-router-dom";
+
+import FavButton from "./FavButton.tsx";
+import ProductItem from "./ProductItem.tsx";
 
 type ProductsListProps = {
   products: Product[];
@@ -16,15 +19,7 @@ export default function ProductsList({
   return (
     <div>
       {products.map((item) => (
-        <div key={item.id}>
-          <Link to={`/product/${item.id}`}>
-            <h2>{item.title}</h2>
-            <img src={item.image} alt={item.title} />
-          </Link>
-          <p>{item.price} €</p>
-          <button onClick={() => handleAddFav(item)}>🖤</button>
-          <button>Add to cart</button>
-        </div>
+        <ProductItem key={item.id} item={item} handleAddFav={handleAddFav} />
       ))}
     </div>
   );

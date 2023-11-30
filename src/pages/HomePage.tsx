@@ -17,6 +17,7 @@ export const HomePage = ({
 }: HomePageProps) => {
   //Favorite Button
   const handleAddFav = (item: Product) => {
+    //Add filter to remove from Fav
     // if (favorite.length === 0) {
     //   setFavorite(item);
     // }

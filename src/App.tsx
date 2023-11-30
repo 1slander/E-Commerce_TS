@@ -13,6 +13,7 @@ import ProductDetails from "./pages/ProductDetails";
 //Move to type folder
 //type naming convention ProductsData -> ProductData
 import { Product } from "./types/types";
+
 function App() {
   const API_URL: string = "https://fakestoreapi.com/products";
   //States
