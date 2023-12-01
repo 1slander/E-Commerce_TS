@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../types/types";
+import SimpleSnackbar from "../components/SimpleSnackBar.tsx";
 
 type ProductItemProps = {
   item: Product;
@@ -15,15 +16,15 @@ export default function ProductItem({
 }: ProductItemProps) {
   const [like, setLike] = useState(false);
 
-  const handleClick = (item: Product) => {
-    if (like) {
-      handleRemoveFav(item);
-      setLike(false);
-    } else {
-      handleAddFav(item);
-      setLike(true);
-    }
-  };
+  // const handleClick = (item: Product) => {
+  //   if (like) {
+  //     handleRemoveFav(item);
+  //     setLike(false);
+  //   } else {
+  //     handleAddFav(item);
+  //     setLike(true);
+  //   }
+  // };
   return (
     <div>
       <Link to={`/product/${item.id}`}>
@@ -31,13 +32,21 @@ export default function ProductItem({
         <img src={item.image} alt={item.title} />
       </Link>
       <p>{item.price} €</p>
-      <button
+      {/* <button
         onClick={() => {
           handleClick(item);
         }}
       >
         {like ? "❤️" : "🖤"}
-      </button>
+      </button> */}
+      <SimpleSnackbar
+        message={like ? "Item added to favorite" : "Item remove from favorite"}
+        handleAddFav={handleAddFav}
+        handleRemoveFav={handleRemoveFav}
+        like={like}
+        setLike={setLike}
+        item={item}
+      />
       <button>Add to cart</button>
     </div>
   );

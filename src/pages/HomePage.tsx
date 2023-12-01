@@ -46,6 +46,7 @@ export const HomePage = ({
     <main>
       <h1>Welcome to the BlackHeart Shop</h1>
       <p>Best prices ever!</p>
+
       <SearchBar search={search} setSearch={setSearch} />
       <ProductsList
         products={searchWord}

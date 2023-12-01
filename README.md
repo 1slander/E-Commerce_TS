@@ -1,13 +1,13 @@
 #TODO:
 
-- DOING:Add favorite btn functionality
+- DONE:Add favorite btn functionality
 - DONE:Add Navbar
 - Add Cart + functionality
 - DONE: Add Search bar + functionality
 
 # Homework
 
-- Change color of fav btn when click and show the message.
+- DOING: Change color of fav btn when click and show the message.
 - Same thing with the cart.
 - Every time a product is added to fav or the cart.
 - When using the cart re-use the ProductOrder Type.
