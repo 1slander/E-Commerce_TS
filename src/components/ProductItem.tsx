@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../types/types";
+
 type ProductItemProps = {
   item: Product;
   handleAddFav: (item: Product) => void;
