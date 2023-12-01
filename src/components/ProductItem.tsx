@@ -5,10 +5,25 @@ import { Product } from "../types/types";
 type ProductItemProps = {
   item: Product;
   handleAddFav: (item: Product) => void;
+  handleRemoveFav: (item: Product) => void;
 };
 
-export default function ProductItem({ item, handleAddFav }: ProductItemProps) {
+export default function ProductItem({
+  item,
+  handleAddFav,
+  handleRemoveFav,
+}: ProductItemProps) {
   const [like, setLike] = useState(false);
+
+  const handleClick = (item: Product) => {
+    if (like) {
+      handleRemoveFav(item);
+      setLike(false);
+    } else {
+      handleAddFav(item);
+      setLike(true);
+    }
+  };
   return (
     <div>
       <Link to={`/product/${item.id}`}>
@@ -18,8 +33,7 @@ export default function ProductItem({ item, handleAddFav }: ProductItemProps) {
       <p>{item.price} €</p>
       <button
         onClick={() => {
-          handleAddFav(item);
-          setLike(!like);
+          handleClick(item);
         }}
       >
         {like ? "❤️" : "🖤"}

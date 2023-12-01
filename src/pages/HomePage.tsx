@@ -18,7 +18,7 @@ export const HomePage = ({
 }: HomePageProps) => {
   const [search, setSearch] = useState<string>("");
 
-  //Favorite Button
+  //Add Favorite
   const handleAddFav = (item: Product) => {
     //Add filter to remove from Fav
     // if (favorite.length === 0) {
@@ -27,6 +27,13 @@ export const HomePage = ({
     if (!favorite.find((favItem) => favItem.id === item.id)) {
       setFavorite([...favorite, item]);
     }
+  };
+
+  //Remove Favorite
+  const handleRemoveFav = (product: Product): void => {
+    setFavorite((prevFavorites) =>
+      prevFavorites.filter((item) => item.id !== product.id)
+    );
   };
 
   //Search Function
@@ -45,6 +52,7 @@ export const HomePage = ({
         favorite={favorite}
         setFavorite={setFavorite}
         handleAddFav={handleAddFav}
+        handleRemoveFav={handleRemoveFav}
       />
     </main>
   );
