@@ -2,15 +2,14 @@
 
 - DONE:Add favorite btn functionality
 - DONE:Add Navbar
-- Add Cart + functionality
+- DONE:Add Cart + functionality
 - DONE: Add Search bar + functionality
 
 # Homework
 
-- DOING: Change color of fav btn when click and show the message.
-- Same thing with the cart.
-- Every time a product is added to fav or the cart.
-- When using the cart re-use the ProductOrder Type.
+- DONE: Change color of fav btn when click and show the message.
+- TODO:Same thing with the cart.
+- DONE:When using the cart re-use the ProductOrder Type.
 
 https://mui.com/material-ui/react-snackbar/
 

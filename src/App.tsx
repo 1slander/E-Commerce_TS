@@ -49,6 +49,7 @@ function App() {
           element={
             <HomePage
               products={products}
+              setProducts={setProducts}
               favorite={favoriteItems}
               setFavorite={setFavoriteItems}
               like={like}
@@ -69,7 +70,15 @@ function App() {
             />
           }
         />
-        <Route path="/cart" element={<Cart productOrder={productOrder} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              productOrder={productOrder}
+              setProductOrder={setProductOrder}
+            />
+          }
+        />
       </Routes>
     </>
   );

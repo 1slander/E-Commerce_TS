@@ -8,6 +8,7 @@ import SearchBar from "../components/SearchBar.tsx";
 //Type inside the components for props
 type HomePageProps = {
   products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   favorite: Product[];
   setFavorite: Dispatch<SetStateAction<Product[]>>;
   like: boolean;
@@ -17,6 +18,7 @@ type HomePageProps = {
 };
 export const HomePage = ({
   products,
+  setProducts,
   favorite,
   setFavorite,
   like,
@@ -65,16 +67,22 @@ export const HomePage = ({
   const searchWord = products.filter((product: Product) => {
     return product.title.toLocaleLowerCase().includes(search.toLowerCase());
   });
-  //TODO: FilterByPrice
-  const filterByPrice = [...products].sort(
-    (productA: Product, productB: Product) => productA.price - productB.price
-  );
+  //DONE: FilterByPrice
+  const filterByPrice = () => {
+    const sortedProducts = products
+      .slice()
+      .sort(
+        (productA: Product, productB: Product) =>
+          productA.price - productB.price
+      );
+    setProducts(sortedProducts);
+  };
 
   return (
     <main>
       <h1>Welcome to the BlackHeart Shop</h1>
       <p>Best prices ever!</p>
-
+      <button onClick={filterByPrice}>Sort By Price</button>
       <SearchBar search={search} setSearch={setSearch} />
       <ProductsList
         products={searchWord}
