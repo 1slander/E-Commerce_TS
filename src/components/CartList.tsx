@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { ProductOrder } from "../types/types";
+import CartItem from "./CartItem";
 type CartListProps = {
   productOrder: ProductOrder[];
 };
@@ -11,7 +12,14 @@ export default function CartList({ productOrder }: CartListProps) {
   console.log(productOrder);
   return (
     <div>
-      <ul></ul>
+      {productOrder.length === 0 ? (
+        <p>Cart is empty</p>
+      ) : (
+        productOrder.map((product) => (
+          <CartItem key={product.id} product={product} />
+        ))
+      )}
+
       <div>
         <p>Total: £ {total}</p>
       </div>

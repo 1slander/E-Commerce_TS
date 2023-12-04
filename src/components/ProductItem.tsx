@@ -53,6 +53,8 @@ export default function ProductItem({
         setLike={setLike}
         item={item}
       />
+      {/* Error with passing the item did add on type that could Product or
+      ProductOrder type */}
       <button onClick={() => addToCart(item)}>Add to cart</button>
     </div>
   );
