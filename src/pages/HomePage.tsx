@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-import { Product } from "../types/types.ts";
+import { Product, ProductOrder } from "../types/types.ts";
 
 import ProductsList from "../components/ProductsList.tsx";
 import SearchBar from "../components/SearchBar.tsx";
@@ -10,11 +10,19 @@ type HomePageProps = {
   products: Product[];
   favorite: Product[];
   setFavorite: Dispatch<SetStateAction<Product[]>>;
+  like: boolean;
+  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  productOrder: ProductOrder[];
+  setProductOrder: Dispatch<SetStateAction<ProductOrder[]>>;
 };
 export const HomePage = ({
   products,
   favorite,
   setFavorite,
+  like,
+  setLike,
+  productOrder,
+  setProductOrder,
 }: HomePageProps) => {
   const [search, setSearch] = useState<string>("");
 
@@ -36,11 +44,31 @@ export const HomePage = ({
     );
   };
 
+  //Add to cart
+
+  const addToCart = (product: ProductOrder) => {
+    const productExist = productOrder.find(
+      (cartItem) => cartItem.id === product.id
+    );
+
+    if (productExist) {
+      productExist.quantity++;
+      setProductOrder([...productOrder]);
+    } else {
+      product.quantity = 1;
+      return setProductOrder([...productOrder, product]);
+    }
+  };
+
   //Search Function
 
   const searchWord = products.filter((product: Product) => {
     return product.title.toLocaleLowerCase().includes(search.toLowerCase());
   });
+  //TODO: FilterByPrice
+  const filterByPrice = [...products].sort(
+    (productA: Product, productB: Product) => productA.price - productB.price
+  );
 
   return (
     <main>
@@ -54,6 +82,9 @@ export const HomePage = ({
         setFavorite={setFavorite}
         handleAddFav={handleAddFav}
         handleRemoveFav={handleRemoveFav}
+        like={like}
+        setLike={setLike}
+        addToCart={addToCart}
       />
     </main>
   );

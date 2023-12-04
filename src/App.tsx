@@ -8,20 +8,21 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 //Pages
 import { HomePage } from "./pages/HomePage";
-import ProductDetails from "./pages/ProductDetails";
-
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import Cart from "./pages/CartPage";
 //Move to type folder
 //type naming convention ProductsData -> ProductData
-import { Product } from "./types/types";
+import { Product, ProductOrder } from "./types/types";
 
 function App() {
   const API_URL: string = "https://fakestoreapi.com/products";
   //States
   const [isLoading, setIsLoading] = useState<boolean>(true); //type optional
+  const [like, setLike] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   //Don't change name
   const [favoriteItems, setFavoriteItems] = useState<Product[]>([]);
-
+  const [productOrder, setProductOrder] = useState<ProductOrder[]>([]);
   //Fetch data:
   useEffect(() => {
     axios(API_URL)
@@ -50,18 +51,25 @@ function App() {
               products={products}
               favorite={favoriteItems}
               setFavorite={setFavoriteItems}
+              like={like}
+              setLike={setLike}
+              productOrder={productOrder}
+              setProductOrder={setProductOrder}
             />
           }
         />
         <Route
           path="/product/:productId"
           element={
-            <ProductDetails
+            <ProductDetailsPage
               favorite={favoriteItems}
               setFavorite={setFavoriteItems}
+              like={like}
+              setLike={setLike}
             />
           }
         />
+        <Route path="/cart" element={<Cart productOrder={productOrder} />} />
       </Routes>
     </>
   );

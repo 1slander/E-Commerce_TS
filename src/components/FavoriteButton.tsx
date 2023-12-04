@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { Product } from "../types/types";
 
-type SimpleSnackBarProps = {
+type FavoriteButtonProps = {
   message: string;
   handleAddFav: (item: Product) => void;
   handleRemoveFav: (item: Product) => void;
@@ -20,14 +20,14 @@ interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-export default function SimpleSnackbar({
+export default function FavoriteButton({
   message,
   handleAddFav,
   handleRemoveFav,
   like,
   setLike,
   item,
-}: SimpleSnackBarProps) {
+}: FavoriteButtonProps) {
   //Before changing position
   //const [open, setOpen] = React.useState(false);
   //In order to change the position I have to create a new state
@@ -88,7 +88,7 @@ export default function SimpleSnackbar({
       >
         {like ? "❤️" : "🖤"}
       </Button>
-      //Conditional rendering
+
       {like ? (
         <Snackbar
           open={open}

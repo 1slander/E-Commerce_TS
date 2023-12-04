@@ -1,20 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Product } from "../types/types";
-import SimpleSnackbar from "../components/SimpleSnackBar.tsx";
+import { Product, ProductOrder } from "../types/types";
+import FavoriteButton from "./FavoriteButton.tsx";
 
 type ProductItemProps = {
-  item: Product;
+  item: Product | ProductOrder;
   handleAddFav: (item: Product) => void;
   handleRemoveFav: (item: Product) => void;
+  like: boolean;
+  setLike: React.Dispatch<React.SetStateAction<boolean>>;
+  addToCart: (item: ProductOrder) => void;
 };
 
 export default function ProductItem({
   item,
   handleAddFav,
   handleRemoveFav,
+  like,
+  setLike,
+  addToCart,
 }: ProductItemProps) {
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
 
   // const handleClick = (item: Product) => {
   //   if (like) {
@@ -39,7 +45,7 @@ export default function ProductItem({
       >
         {like ? "❤️" : "🖤"}
       </button> */}
-      <SimpleSnackbar
+      <FavoriteButton
         message={like ? "Item added to favorite" : "Item remove from favorite"}
         handleAddFav={handleAddFav}
         handleRemoveFav={handleRemoveFav}
@@ -47,7 +53,7 @@ export default function ProductItem({
         setLike={setLike}
         item={item}
       />
-      <button>Add to cart</button>
+      <button onClick={() => addToCart(item)}>Add to cart</button>
     </div>
   );
 }
