@@ -37,6 +37,7 @@ function App() {
       });
   }, []);
 
+  console.log("Cart Items", productOrder);
   //Separate loading in a component
 
   if (isLoading) return "Loading...";

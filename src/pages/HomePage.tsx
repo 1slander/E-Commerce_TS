@@ -53,10 +53,10 @@ export const HomePage = ({
       (cartItem) => cartItem.id === product.id
     );
 
-    if (productExist) {
-      productExist.quantity++;
-      setProductOrder([...productOrder]);
-    } else {
+    if (!productExist) {
+      //productExist.quantity++;
+      //   setProductOrder([...productOrder]);
+      // } else {
       product.quantity = 1;
       return setProductOrder([...productOrder, product]);
     }
@@ -68,6 +68,7 @@ export const HomePage = ({
     return product.title.toLocaleLowerCase().includes(search.toLowerCase());
   });
   //DONE: FilterByPrice
+  //Add a dropdown
   const filterByPrice = () => {
     const sortedProducts = products
       .slice()

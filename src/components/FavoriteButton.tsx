@@ -28,6 +28,8 @@ export default function FavoriteButton({
   setLike,
   item,
 }: FavoriteButtonProps) {
+  // had to add a new state as I was passing this for each item. Now this is only affecting that individual item.
+  const [isFav, setIsFav] = React.useState<boolean>(false);
   //Before changing position
   //const [open, setOpen] = React.useState(false);
   //In order to change the position I have to create a new state
@@ -42,12 +44,14 @@ export default function FavoriteButton({
   const handleClick = (newState: SnackbarOrigin) => {
     //setOpen(true);
     setState({ ...newState, open: true });
-    if (like) {
+    if (isFav) {
       handleRemoveFav(item);
-      setLike(false);
+      //setLike(false);
+      setIsFav(false);
     } else {
       handleAddFav(item);
-      setLike(true);
+      //setLike(true);
+      setIsFav(true);
     }
   };
 
@@ -86,13 +90,13 @@ export default function FavoriteButton({
       <Button
         onClick={() => handleClick({ vertical: "bottom", horizontal: "right" })}
       >
-        {like ? "❤️" : "🖤"}
+        {isFav ? "❤️" : "🖤"}
       </Button>
 
-      {like ? (
+      {isFav ? (
         <Snackbar
           open={open}
-          autoHideDuration={6000}
+          autoHideDuration={2000}
           onClose={handleClose}
           message={message}
           action={action}
@@ -106,7 +110,7 @@ export default function FavoriteButton({
       ) : (
         <Snackbar
           open={open}
-          autoHideDuration={6000}
+          autoHideDuration={2000}
           onClose={handleClose}
           message={message}
           action={action}
