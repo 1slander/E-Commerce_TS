@@ -8,7 +8,9 @@ export default function CartItem({ product, setProductOrder }: CartItemProps) {
   const handleAddQty = (productId: ProductOrder) => {
     setProductOrder((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId.id ? { ...item, quantity: item.quantity++ } : item
+        item.id === productId.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       )
     );
   };
@@ -16,7 +18,7 @@ export default function CartItem({ product, setProductOrder }: CartItemProps) {
     setProductOrder((prevItems) =>
       prevItems.map((item) =>
         item.id === productId.id && item.quantity > 1
-          ? { ...item, quantity: item.quantity-- }
+          ? { ...item, quantity: item.quantity - 1 }
           : item
       )
     );
@@ -25,7 +27,12 @@ export default function CartItem({ product, setProductOrder }: CartItemProps) {
     <>
       <td>{product.title}</td>
       <td>
-        <button onClick={() => handleRemoveQty(product)}>-</button>
+        <button
+          onClick={() => handleRemoveQty(product)}
+          disabled={product.quantity === 1}
+        >
+          -
+        </button>
         {product.quantity}
         <button onClick={() => handleAddQty(product)}>+</button>
       </td>
