@@ -1,6 +1,6 @@
 import React from "react";
 //import { type ProductsData as Stock } from "../App";
-import { Product, ProductOrder } from "../types/types";
+import { Product } from "../types/types";
 
 import ProductItem from "./ProductItem.tsx";
 
@@ -12,7 +12,6 @@ type ProductsListProps = {
   handleRemoveFav: (item: Product) => void;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
-  addToCart: (item: ProductOrder) => void;
 };
 export default function ProductsList({
   products,
@@ -20,7 +19,6 @@ export default function ProductsList({
   handleRemoveFav,
   like,
   setLike,
-  addToCart,
 }: ProductsListProps) {
   return (
     <div>
@@ -32,7 +30,6 @@ export default function ProductsList({
           handleRemoveFav={handleRemoveFav}
           like={like}
           setLike={setLike}
-          addToCart={addToCart}
         />
       ))}
     </div>

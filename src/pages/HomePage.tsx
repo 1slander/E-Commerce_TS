@@ -1,32 +1,47 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { Product, ProductOrder } from "../types/types.ts";
+import { Product } from "../types/types.ts";
 
 import ProductsList from "../components/ProductsList.tsx";
 import SearchBar from "../components/SearchBar.tsx";
+import axios from "axios";
 
 //Type inside the components for props
 type HomePageProps = {
-  products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   favorite: Product[];
   setFavorite: Dispatch<SetStateAction<Product[]>>;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
-  productOrder: ProductOrder[];
-  setProductOrder: Dispatch<SetStateAction<ProductOrder[]>>;
 };
+
+const API_URL: string = "https://fakestoreapi.com/products";
+
 export const HomePage = ({
-  products,
-  setProducts,
   favorite,
   setFavorite,
   like,
   setLike,
-  productOrder,
-  setProductOrder,
 }: HomePageProps) => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true); //type optional
+
+  //Fetch data:
+  useEffect(() => {
+    axios(API_URL)
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log("Error fetching data", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  //TODO:Create a Loading Separate component
+  if (isLoading) return "Loading...";
 
   //Add Favorite
   const handleAddFav = (item: Product) => {
@@ -48,19 +63,19 @@ export const HomePage = ({
 
   //Add to cart
 
-  const addToCart = (product: ProductOrder) => {
-    const productExist = productOrder.find(
-      (cartItem) => cartItem.id === product.id
-    );
+  // const addToCart = (product: ProductOrder) => {
+  //   const productExist = productOrder.find(
+  //     (cartItem) => cartItem.id === product.id
+  //   );
 
-    if (!productExist) {
-      //productExist.quantity++;
-      //   setProductOrder([...productOrder]);
-      // } else {
-      product.quantity = 1;
-      return setProductOrder([...productOrder, product]);
-    }
-  };
+  //   if (!productExist) {
+  //     //productExist.quantity++;
+  //     //   setProductOrder([...productOrder]);
+  //     // } else {
+  //     product.quantity = 1;
+  //     return setProductOrder([...productOrder, product]);
+  //   }
+  // };
 
   //Search Function
 
@@ -93,7 +108,7 @@ export const HomePage = ({
         handleRemoveFav={handleRemoveFav}
         like={like}
         setLike={setLike}
-        addToCart={addToCart}
+        //addToCart={addToCart}
       />
     </main>
   );

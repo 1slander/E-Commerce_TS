@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/cartContext.tsx";
+
 import { Link } from "react-router-dom";
 import { Product, ProductOrder } from "../types/types";
 import FavoriteButton from "./FavoriteButton.tsx";
@@ -9,7 +11,6 @@ type ProductItemProps = {
   handleRemoveFav: (item: Product) => void;
   like: boolean;
   setLike: React.Dispatch<React.SetStateAction<boolean>>;
-  addToCart: (item: ProductOrder) => void;
 };
 
 export default function ProductItem({
@@ -18,19 +19,9 @@ export default function ProductItem({
   handleRemoveFav,
   like,
   setLike,
-  addToCart,
 }: ProductItemProps) {
-  // const [like, setLike] = useState(false);
+  const { handleAddItemToCart } = useContext(CartContext);
 
-  // const handleClick = (item: Product) => {
-  //   if (like) {
-  //     handleRemoveFav(item);
-  //     setLike(false);
-  //   } else {
-  //     handleAddFav(item);
-  //     setLike(true);
-  //   }
-  // };
   return (
     <div>
       <Link to={`/product/${item.id}`}>
@@ -38,13 +29,7 @@ export default function ProductItem({
         <img src={item.image} alt={item.title} />
       </Link>
       <p>{item.price} €</p>
-      {/* <button
-        onClick={() => {
-          handleClick(item);
-        }}
-      >
-        {like ? "❤️" : "🖤"}
-      </button> */}
+
       <FavoriteButton
         message={like ? "Item added to favorite" : "Item remove from favorite"}
         handleAddFav={handleAddFav}
@@ -55,7 +40,7 @@ export default function ProductItem({
       />
       {/* Error with passing the item did add on type that could Product or
       ProductOrder type */}
-      <button onClick={() => addToCart(item)}>Add to cart</button>
+      <button onClick={() => handleAddItemToCart(item)}>Add to cart</button>
     </div>
   );
 }

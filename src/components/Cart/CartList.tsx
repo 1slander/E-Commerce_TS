@@ -1,17 +1,19 @@
-import { ProductOrder } from "../types/types";
-import CartItem from "./CartItem";
-type CartListProps = {
-  productOrder: ProductOrder[];
-  setProductOrder: React.Dispatch<React.SetStateAction<ProductOrder[]>>;
-};
+import { useContext } from "react";
 
-export default function CartList({
-  productOrder,
-  setProductOrder,
-}: CartListProps) {
+import { CartContext } from "../../context/cartContext";
+
+import { ProductOrder } from "../../types/types";
+
+import CartItem from "./CartItem";
+
+export default function CartList() {
+  const { productOrder, handleUpdateItemQuantity } = useContext(CartContext);
+
   const total: number = productOrder.reduce((acc, curr) => {
     return acc + curr.price * curr.quantity;
   }, 0);
+
+  const totalFormatted: number = +total.toFixed(2);
 
   return (
     <>
@@ -24,21 +26,21 @@ export default function CartList({
           </tr>
         </thead>
         <tbody>
-          {productOrder.length === 0 ? (
-            <tr key={productOrder.length}>
+          {!productOrder ? (
+            <tr>
               <td>Cart is empty</td>
             </tr>
           ) : (
             productOrder.map((product) => (
               <tr key={product.id}>
-                <CartItem product={product} setProductOrder={setProductOrder} />
+                <CartItem product={product} />
               </tr>
             ))
           )}
         </tbody>
       </table>
       <div>
-        <p>Total: £ {total}</p>
+        <p>Total: £ {totalFormatted}</p>
       </div>
     </>
   );

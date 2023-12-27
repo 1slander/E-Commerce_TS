@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 //import { type ProductsData } from "../App";
-import { Product, ProductOrder } from "../types/types";
+import { Product } from "../types/types";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import FavoriteButton from "../components/FavoriteButton";
+
+import { CartContext } from "../context/cartContext";
 
 //What would be the best approach? Create a new type adding qty or used the exported one
 
@@ -24,6 +26,8 @@ export default function ProductDetails({
 }: ProductDetailsPageProps) {
   const [product, setProduct] = useState<Product>();
   const { productId } = useParams();
+  const { handleAddItemToCart } = useContext(CartContext);
+
   useEffect(() => {
     axios(`https://fakestoreapi.com/products/${productId}`)
       .then((response) => {
@@ -38,6 +42,10 @@ export default function ProductDetails({
         <img src={product?.image} alt={product?.title} />
         <h4>{product?.price} €</h4>
         <p>{product?.description}</p>
+
+        <button onClick={() => handleAddItemToCart(product)}>
+          Add to cart
+        </button>
       </div>
       <div>
         {/* <FavoriteButton
