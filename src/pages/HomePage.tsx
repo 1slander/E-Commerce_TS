@@ -52,6 +52,7 @@ export const HomePage = ({
     // }
     if (!favorite.find((favItem) => favItem.id === item.id)) {
       setFavorite([...favorite, item]);
+      setLike(true);
     }
   };
 
@@ -60,6 +61,7 @@ export const HomePage = ({
     setFavorite((prevFavorites) =>
       prevFavorites.filter((item) => item.id !== product.id)
     );
+    setLike(false);
   };
 
   //Add to cart
