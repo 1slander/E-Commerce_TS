@@ -98,7 +98,7 @@ export const HomePage = ({
   return (
     <main>
       <div className="main">
-        <h1>Welcome to the BlackHeart Shop</h1>
+        <h1>Welcome to the BlackHeart</h1>
         <p>Best prices ever!</p>
         <Button onClick={filterByPrice}>Sort By Price</Button>
         <SearchBar search={search} setSearch={setSearch} />

@@ -29,6 +29,10 @@ export default function ProductDetails({
   const { productId } = useParams();
   const { handleAddItemToCart } = useContext(CartContext);
 
+  // const formattedPrice = (price: number) => {
+  //   return price.toFixed(2);
+  // };
+
   useEffect(() => {
     axios(`https://fakestoreapi.com/products/${productId}`)
       .then((response) => {
@@ -36,12 +40,13 @@ export default function ProductDetails({
       })
       .catch((error) => console.log(error));
   }, [productId]);
+
   return (
     <main>
       <div>
         <h2>{product?.title}</h2>
         <img src={product?.image} alt={product?.title} />
-        <h4>{product?.price} €</h4>
+        <h4>£ {product?.price}</h4>
         <p>{product?.description}</p>
 
         <Button

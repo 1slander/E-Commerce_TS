@@ -2,6 +2,10 @@ import React, { useContext, useRef } from "react";
 import { CartContext } from "../context/cartContext";
 import { Link } from "react-router-dom";
 
+import { Badge } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+import Button from "./Button";
 import SimpleBadge from "./SimpleBadge";
 import CartModal from "./Cart/CartModal";
 
@@ -27,13 +31,17 @@ export const Navbar = ({ favorite }: NavbarProps) => {
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
       <nav>
-        <h1>🖤 Shop</h1>
+        <h1>The BlackHeart 🖤</h1>
         <div className="menu">
           <Link to="/">Home</Link>
           {/* <Link to="/cart">Cart</Link> */}
           {/* {favorite.length > 0 ? <span>{favorite.length}</span> : <span>0</span>} */}
 
-          <button onClick={handleOpenCartClick}>Cart ({cartQuantity})</button>
+          <Button classCss="btnCart_nav" onClick={handleOpenCartClick}>
+            <Badge badgeContent={cartQuantity} color="secondary">
+              <ShoppingCartIcon />
+            </Badge>
+          </Button>
 
           <SimpleBadge favList={favorite} />
         </div>

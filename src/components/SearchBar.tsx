@@ -8,7 +8,7 @@ export default function SearchBar({ search, setSearch }: SearchBarProps) {
     setSearch(e.target.value);
   };
   return (
-    <p>
+    <p className="searchbar">
       <input
         type="text"
         placeholder="Search products"

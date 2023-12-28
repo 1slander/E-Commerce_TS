@@ -23,6 +23,10 @@ export default function ProductItem({
 }: ProductItemProps) {
   const { handleAddItemToCart } = useContext(CartContext);
 
+  const formattedPrice = (price: number) => {
+    return +price.toFixed(2);
+  };
+
   return (
     <div className="products_display">
       <Link to={`/product/${item.id}`} className="products_display_links">
@@ -33,7 +37,7 @@ export default function ProductItem({
           alt={item.title}
         />
       </Link>
-      <p>£ {item.price}</p>
+      <p>£ {formattedPrice(item.price)}</p>
       <div className="products_btn">
         <FavoriteButton
           message={

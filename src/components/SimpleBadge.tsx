@@ -7,7 +7,7 @@ type SimpleBadgeProps = {
 export default function SimpleBadge({ favList }: SimpleBadgeProps) {
   return (
     <Badge badgeContent={favList.length} color="secondary">
-      <Favorite />
+      <Favorite className="fav_icon" />
     </Badge>
   );
 }

@@ -1,6 +1,19 @@
-export default function Button({ classCss, children, ...props }) {
+import { ReactNode } from "react";
+
+type ButtonProps = {
+  id: string;
+  classCss: string;
+  children: ReactNode;
+};
+
+export default function Button({
+  id,
+  classCss,
+  children,
+  ...props
+}: ButtonProps) {
   return (
-    <button className={"btn " + classCss} {...props}>
+    <button id={id} className={"btn " + classCss} {...props}>
       {children}
     </button>
   );
