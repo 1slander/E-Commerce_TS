@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext.tsx";
-
 import { Link } from "react-router-dom";
-import { Product, ProductOrder } from "../types/types";
+
+import Button from "./Button.tsx";
 import FavoriteButton from "./FavoriteButton.tsx";
 
+import { Product, ProductOrder } from "../types/types";
 type ProductItemProps = {
   item: Product | ProductOrder;
   handleAddFav: (item: Product) => void;
@@ -23,24 +24,36 @@ export default function ProductItem({
   const { handleAddItemToCart } = useContext(CartContext);
 
   return (
-    <div>
-      <Link to={`/product/${item.id}`}>
-        <h2>{item.title}</h2>
-        <img src={item.image} alt={item.title} />
+    <div className="products_display">
+      <Link to={`/product/${item.id}`} className="products_display_links">
+        <h2 className="products_display_title">{item.title}</h2>
+        <img
+          className="products_display_img"
+          src={item.image}
+          alt={item.title}
+        />
       </Link>
-      <p>{item.price} €</p>
-
-      <FavoriteButton
-        message={like ? "Item added to favorite" : "Item remove from favorite"}
-        handleAddFav={handleAddFav}
-        handleRemoveFav={handleRemoveFav}
-        like={like}
-        setLike={setLike}
-        item={item}
-      />
-      {/* Error with passing the item did add on type that could Product or
+      <p>£ {item.price}</p>
+      <div className="products_btn">
+        <FavoriteButton
+          message={
+            like ? "Item added to favorite" : "Item remove from favorite"
+          }
+          handleAddFav={handleAddFav}
+          handleRemoveFav={handleRemoveFav}
+          like={like}
+          setLike={setLike}
+          item={item}
+        />
+        {/* Error with passing the item did add on type that could Product or
       ProductOrder type */}
-      <button onClick={() => handleAddItemToCart(item)}>Add to cart</button>
+        <Button
+          classCss="btn_addCart"
+          onClick={() => handleAddItemToCart(item)}
+        >
+          Add to cart
+        </Button>
+      </div>
     </div>
   );
 }

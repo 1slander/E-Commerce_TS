@@ -21,7 +21,7 @@ export default function ProductsList({
   setLike,
 }: ProductsListProps) {
   return (
-    <div>
+    <div className="products_list">
       {products.map((item) => (
         <ProductItem
           key={item.id}

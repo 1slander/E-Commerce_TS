@@ -1,6 +1,8 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
 import { createPortal } from "react-dom";
+
 import CartPage from "../../pages/CartPage";
+
 type CartModalProps = {
   title: string;
   actions: JSX.Element;

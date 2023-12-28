@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { Product } from "../types/types.ts";
 
+import Button from "../components/Button.tsx";
 import ProductsList from "../components/ProductsList.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import axios from "axios";
@@ -96,10 +97,12 @@ export const HomePage = ({
 
   return (
     <main>
-      <h1>Welcome to the BlackHeart Shop</h1>
-      <p>Best prices ever!</p>
-      <button onClick={filterByPrice}>Sort By Price</button>
-      <SearchBar search={search} setSearch={setSearch} />
+      <div className="main">
+        <h1>Welcome to the BlackHeart Shop</h1>
+        <p>Best prices ever!</p>
+        <Button onClick={filterByPrice}>Sort By Price</Button>
+        <SearchBar search={search} setSearch={setSearch} />
+      </div>
       <ProductsList
         products={searchWord}
         favorite={favorite}

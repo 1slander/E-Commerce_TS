@@ -12,7 +12,6 @@ import { Navbar } from "./components/Navbar";
 //Pages
 import { HomePage } from "./pages/HomePage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
-import CartPage from "./pages/CartPage";
 
 //type naming convention ProductsData -> ProductData
 import { Product } from "./types/types";

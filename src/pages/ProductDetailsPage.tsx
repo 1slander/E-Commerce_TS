@@ -4,6 +4,7 @@ import { Product } from "../types/types";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import FavoriteButton from "../components/FavoriteButton";
+import Button from "../components/Button";
 
 import { CartContext } from "../context/cartContext";
 
@@ -43,9 +44,12 @@ export default function ProductDetails({
         <h4>{product?.price} €</h4>
         <p>{product?.description}</p>
 
-        <button onClick={() => handleAddItemToCart(product)}>
+        <Button
+          classCss="btn_addCart"
+          onClick={() => handleAddItemToCart(product)}
+        >
           Add to cart
-        </button>
+        </Button>
       </div>
       <div>
         {/* <FavoriteButton

@@ -1,17 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap");
+
 * {
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
+  background: linear-gradient(#4a088c, #61358d, #9a239a);
 }
 
 img {
-  width: 200px;
 }
 
 a {
   text-decoration: none;
+  color: #fff;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+.main > h1 {
+  font-size: 3rem;
+}
+.main > p {
+  font-size: 2rem;
 }
 nav {
   display: flex;
@@ -81,4 +97,64 @@ nav > div {
 
 #modal form button:last-of-type:hover {
   background: #490654;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 0.8em 1.6em;
+  font-weight: 600;
+  background-color: #8d249e;
+  color: #edeae5;
+  cursor: pointer;
+}
+
+.btn:focus,
+.btn:hover {
+  background-color: #490654;
+}
+
+.products_list {
+  margin: 0.25em 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+}
+
+.products_display {
+  background-color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 1.2em 0.65em;
+  margin: 0 1rem;
+}
+
+.products_display > p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #560563;
+}
+
+.products_display_links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #560563;
+}
+.products_display_title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+.products_display_img {
+  align-self: center;
+  width: 120px;
+  height: 150px;
+}
+
+.products_btn {
+  display: flex;
 }
