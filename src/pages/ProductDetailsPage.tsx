@@ -42,19 +42,28 @@ export default function ProductDetails({
   }, [productId]);
 
   return (
-    <main>
-      <div>
-        <h2>{product?.title}</h2>
-        <img src={product?.image} alt={product?.title} />
-        <h4>£ {product?.price}</h4>
-        <p>{product?.description}</p>
+    <main className="product_detail">
+      <h2>{product?.title}</h2>
+      <div className="product_detail_wrapper">
+        <div>
+          <img
+            className="product_detail_img"
+            src={product?.image}
+            alt={product?.title}
+          />
+        </div>
 
-        <Button
-          classCss="btn_addCart"
-          onClick={() => handleAddItemToCart(product)}
-        >
-          Add to cart
-        </Button>
+        <div className="product_detail_info">
+          <h4 className="product_detail_price">£ {product?.price}</h4>
+          <p className="product_detail_description">{product?.description}</p>
+
+          <Button
+            classCss="btn_addCart product_detail_btn"
+            onClick={() => handleAddItemToCart(product)}
+          >
+            Add to cart
+          </Button>
+        </div>
       </div>
       <div>
         {/* <FavoriteButton

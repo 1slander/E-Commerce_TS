@@ -13,14 +13,12 @@ function updateCartReducer(state, action) {
     const productExist = state.find((cartItem) => cartItem.id === product.id);
 
     if (!productExist) {
-      const quantity = (product.quantity = 1);
-      const newProduct = { ...product, quantity };
+      //const quantity = (product.quantity = 1);
+      const newProduct = { ...product, quantity: (product.quantity = 1) };
       const newProductOrder = [...state, newProduct];
-      console.log("New Product Order: ", newProductOrder);
       return newProductOrder;
     }
 
-    console.log("Product already exists in cart");
     return state;
   } else if (action.type === "UPDATE") {
     const productId = action.productId;

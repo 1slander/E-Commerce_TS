@@ -7,6 +7,7 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background: linear-gradient(to right, #4a088c, #61358d, #9a239a);
+  line-height: 1.6;
 }
 
 img {
@@ -29,6 +30,7 @@ a:focus {
 }
 .main > h1 {
   font-size: 3rem;
+  text-align: center;
 }
 .main > p {
   font-size: 2rem;
@@ -180,4 +182,53 @@ nav > div {
 
 .fav_icon {
   color: #8d249e;
+}
+
+.product_detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product_detail > h2 {
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.product_detail_wrapper {
+  min-width: 320px;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  gap: 4em;
+  background-color: #fff;
+  margin: 1em;
+  padding: 1.6em;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.product_detail_img {
+  width: 200px;
+}
+.product_detail_info {
+  border-left: 1px solid rgba(0, 0, 0, 0.148);
+  padding: 0 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.product_detail_price {
+  font-size: 1.6rem;
+  margin-bottom: 0;
+}
+.product_detail_description {
+  margin-top: 0;
+  font-weight: 500;
+  text-align: justify;
+}
+
+.product_detail_btn {
+  align-self: center;
+  margin-bottom: 1.2em;
 }

@@ -26,6 +26,14 @@ export const Navbar = ({ favorite }: NavbarProps) => {
   }
 
   let modalActions = <button>Close</button>;
+  if (cartQuantity) {
+    modalActions = (
+      <>
+        <button>Close</button>
+        <button>Checkout</button>
+      </>
+    );
+  }
 
   return (
     <>
