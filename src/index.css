@@ -13,6 +13,10 @@ body {
 img {
 }
 
+li {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
   color: #8d249e;
@@ -231,4 +235,34 @@ nav > div {
 .product_detail_btn {
   align-self: center;
   margin-bottom: 1.2em;
+}
+
+.sortBtn {
+  border: 1px solid #8d249e;
+  color: #8d249e;
+  background-color: #fff;
+}
+
+.sort_menu {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.sortBtn:hover,
+.sortBtn:focus {
+  color: #490654;
+  background-color: #f9efda;
+}
+
+.searchbar > input {
+  padding: 0.85em 3em 0.85em 1em;
+  border-radius: 10px;
+  border: none;
+}
+.searchbar > input:focus {
+  outline: none;
+  color: #8d249e;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
